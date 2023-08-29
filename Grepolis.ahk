@@ -1,8 +1,54 @@
 ; ######## SETTINGS ########
-#IfWinActive ahk_exe opera.exe
-^Esc:: ExitApp
+#SingleInstance Force
+#installKeybdHook
+#Persistent
+
+Menu, Tray, NoStandard
+Menu, Tray, Add, Hotkeys, Hotkeys
+Menu, Tray, Add
+Menu, Tray, Add, Restart, Restart
+Menu, Tray, Add, Exit, QuitNow
+
+DirSource = D:\Documents\Work\Code\AHKs\Grepolis\Grepolis.ico
+I_Icon = % DirSource
+ICON [I_Icon]
+Menu, Tray, Icon , %I_Icon%
+TrayTip, Grepolis Utils, Started, 1
+Sleep 3000   ; Let it display for 1.5 seconds.
+HideTrayTip()
+Return
+
+Hotkeys:
+	Gui, Add, ListView, r6 w200, Utility|Shortcut
+	
+	LV_Add(Vis, "Collect Single 10m", "Ctrl + Right Arrow")
+	LV_Add(Vis, "Collect All 10m", "Ctrl + Numpad 1")
+	LV_Add(Vis, "Collect All 40m", "Ctrl + Numpad 2")
+	LV_Add(Vis, "Collect All 3h", "Ctrl + Numpad 3")
+	LV_Add(Vis, "Collect All 8h", "Ctrl + Numpad 4")
+	LV_ModifyCol()  ; Auto-size each column to fit its contents.
+
+	Gui, Show
+Return
 
 ; ######## FUNCTIONS ########
+
+Restart:
+	Reload
+Return
+
+QuitNow:
+	ExitApp
+Return
+
+HideTrayTip() {
+    TrayTip  ; Attempt to hide it the normal way.
+    if SubStr(A_OSVersion,1,3) = "10." {
+        Menu Tray, NoIcon
+        Sleep 200  ; It may be necessary to adjust this sleep.
+        Menu Tray, Icon
+    }
+}
 
 CollectResources(qty, opt){
 	If (opt = 1) {				;10 mins
@@ -39,6 +85,10 @@ CollectResources(qty, opt){
 }
 
 ; ### MAIN ###
+
+^Esc:: ExitApp
+
+#IfWinActive ahk_exe opera.exe
 
 ^DOWN::		;Ctrl+DArrow - Print cursor coords
 	
