@@ -9,7 +9,7 @@ Menu, Tray, Add
 Menu, Tray, Add, Restart, Restart
 Menu, Tray, Add, Exit, QuitNow
 
-DirSource = C:\Program Files\GrepoUtils\Grepolis.ico
+DirSource = C:\Program Files\GrepoUtils\GrepoUtil.ico
 I_Icon = % DirSource
 ICON [I_Icon]
 Menu, Tray, Icon , %I_Icon%

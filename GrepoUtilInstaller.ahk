@@ -22,16 +22,16 @@ IfNotInString, path2, Downloads
 	var1 = % OutputVar
 	var2 = \GrepoUtils\
 	DirSource = %var1%%var2%
-	Script1 = % DirSource "Grepolis.ahk"
+	Script1 = % DirSource "GrepoUtil.ahk"
 	Script := RegExReplace(Script1,"(\n|\r)")
-	Logo1 = % DirSource "Grepolis.ico"
+	Logo1 = % DirSource "GrepoUtil.ico"
 	Logo := RegExReplace(Logo1,"(\n|\r)")
-	Shortcut1 = % DirSource "Grepolis.lnk"
+	Shortcut1 = % DirSource "GrepoUtil.lnk"
 	Shortcut := RegExReplace(Logo1,"(\n|\r)")
 
 	StringTrimRight, OutputVar, A_Temp, 19
 	VarAppData1 = % OutputVar "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\Grepolis.lnk"
+	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtil.lnk"
 }
 else
 {
@@ -39,15 +39,15 @@ else
 	var1 = % OutputVar
 	var2 = \Downloads\GrepoUtils\
 	DirSource = %var1%%var2%
-	Script1 = % DirSource "Grepolis.ahk"
+	Script1 = % DirSource "GrepoUtil.ahk"
 	Script := RegExReplace(Script1,"(\n|\r)")
-	Logo1 = % DirSource "Grepolis.ico"
+	Logo1 = % DirSource "GrepoUtil.ico"
 	Logo := RegExReplace(Logo1,"(\n|\r)")
-	Shortcut1 = % DirSource "Grepolis.lnk"
+	Shortcut1 = % DirSource "GrepoUtil.lnk"
 	Shortcut := RegExReplace(Logo1,"(\n|\r)")
 	
 	VarAppData1 = % OutputVar "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
-	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\Grepolis.lnk"
+	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtil.lnk"
 }
 
 if not (FileExist("C:\Program Files\GrepoUtils")) {
@@ -57,12 +57,12 @@ Sleep 500
 
 FileCopy, % Logo, C:\Program Files\GrepoUtils, 1
 FileCopy, % Script, C:\Program Files\GrepoUtils, 1
-FileCreateShortcut, C:\Program Files\GrepoUtils\Grepolis.ahk, % VarAppData , C:\Program Files\GrepoUtils, , , C:\Program Files\GrepoUtils\Grepolis.ico, , , 1
+FileCreateShortcut, C:\Program Files\GrepoUtils\GrepoUtil.ahk, % VarAppData , C:\Program Files\GrepoUtils, , , C:\Program Files\GrepoUtils\GrepoUtil.ico, , , 1
 
 Sleep 100
 
 MsgBox, 4,, Would you like to run the program now? (press Yes or No)
 IfMsgBox Yes
-    Run, C:\Program Files\GrepoUtils\Grepolis.ahk
+    Run, C:\Program Files\GrepoUtils\GrepoUtil.ahk
 
 MsgBox Done
