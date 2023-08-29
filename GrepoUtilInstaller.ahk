@@ -30,7 +30,7 @@ IfNotInString, path2, Downloads
 	Shortcut := RegExReplace(Logo1,"(\n|\r)")
 
 	StringTrimRight, OutputVar, A_Temp, 19
-	VarAppData1 = % OutputVar "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+	VarAppData1 = % OutputVar "\Desktop"
 	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtil.lnk"
 }
 else
@@ -46,7 +46,7 @@ else
 	Shortcut1 = % DirSource "GrepoUtil.lnk"
 	Shortcut := RegExReplace(Logo1,"(\n|\r)")
 	
-	VarAppData1 = % OutputVar "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
+	VarAppData1 = % OutputVar "\Desktop"
 	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtil.lnk"
 }
 
