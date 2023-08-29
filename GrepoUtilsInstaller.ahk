@@ -17,7 +17,7 @@ VarAppData :=  A_DESKTOP "\GrepoUtils.lnk"			; The path to the user's Desktop wi
 
 if not (FileExist("C:\Program Files\GrepoUtils")) {	; If the C: drive location doesn't exist, make it
 	FileCreateDir, C:\Program Files\GrepoUtils		; Create the directory
-}
+}	; Github somehow loses this closing bracket
 
 Sleep 500
 
