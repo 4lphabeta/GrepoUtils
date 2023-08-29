@@ -1,0 +1,34 @@
+splitString(string, delemiter){
+   arr := []
+   loop, parse, string, %delemiter%
+   {
+      arr[A_Index] := A_LoopField
+   }
+   return arr
+}
+
+DetectHiddenText, Off
+SetTitleMatchMode, 2
+
+WinGetText, out,A
+word_array := splitString(out, " ")
+path = % word_array[5]
+
+path2 := RegExReplace(path, "(\n|\r)")
+
+if not (FileExist("C:\Program Files\Grepolis")) {
+	FileCreateDir, C:\Program Files\Grepolis
+
+Sleep 500
+
+FileCopy, % Logo, C:\Program Files\Grepolis, 1
+FileCopy, % Script, C:\Program Files\Grepolis, 1
+FileCreateShortcut, C:\Program Files\Grepolis\Grepolis.ahk, % VarAppData , C:\Program Files\Grepolis, , , C:\Program Files\Grepolis\Grepolis.ico, , , 1
+
+Sleep 100
+
+MsgBox, 4,, Would you like to run the program now? (press Yes or No)
+IfMsgBox Yes
+    Run, C:\Program Files\Grepolis\Grepolis.ahk
+
+MsgBox Done

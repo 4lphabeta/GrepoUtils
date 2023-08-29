@@ -9,13 +9,14 @@ Menu, Tray, Add
 Menu, Tray, Add, Restart, Restart
 Menu, Tray, Add, Exit, QuitNow
 
-DirSource = D:\Documents\Work\Code\AHKs\Grepolis\Grepolis.ico
+DirSource = C:\Program Files\Grepolis\Grepolis.ico
 I_Icon = % DirSource
 ICON [I_Icon]
 Menu, Tray, Icon , %I_Icon%
 TrayTip, Grepolis Utils, Started, 1
 Sleep 3000   ; Let it display for 1.5 seconds.
 HideTrayTip()
+
 Return
 
 Hotkeys:
@@ -87,6 +88,13 @@ CollectResources(qty, opt){
 ; ### MAIN ###
 
 ^Esc:: ExitApp
+
+FileRead, DefUser, C:\Program Files\Grepolis\UserDef.txt
+Sleep 20
+FileRead, DefCallback, C:\Program Files\Grepolis\CallbackDef.txt
+DetectHiddenWindows, On
+SetTitleMatchMode, 2
+SetKeyDelay, 20, 10
 
 #IfWinActive ahk_exe opera.exe
 
