@@ -28,18 +28,18 @@ IfNotInString, path2, Downloads		;Checks if it is being ran from the Downloads f
 	var1 = % OutputVar
 	var2 = \GrepoUtils\
 	DirSource = %var1%%var2%
-	Script1 = % DirSource "GrepoUtil.ahk"
+	Script1 = % DirSource "GrepoUtils.ahk"
 	Script := RegExReplace(Script1,"(\n|\r)")
 	msgbox %Script%
-	Logo1 = % DirSource "GrepoUtil.ico"
+	Logo1 = % DirSource "GrepoUtils.ico"
 	Logo := RegExReplace(Logo1,"(\n|\r)")
 	msgbox %Logo%
-	;Shortcut1 = % DirSource "GrepoUtil.lnk"
+	;Shortcut1 = % DirSource "GrepoUtils.lnk"
 	;Shortcut := RegExReplace(Shortcut1,"(\n|\r)")
 
 	StringTrimRight, OutputVar, A_Temp, 19
 	VarAppData1 = % OutputVar "\Desktop"
-	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtil.lnk"
+	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtils.lnk"
 	msgbox %VarAppData%
 }
 else
@@ -49,17 +49,17 @@ else
 	var1 = % OutputVar
 	var2 = \Downloads\GrepoUtils\
 	DirSource = %var1%%var2%
-	Script1 = % DirSource "GrepoUtil.ahk"
+	Script1 = % DirSource "GrepoUtils.ahk"
 	Script := RegExReplace(Script1,"(\n|\r)")
 	msgbox %Script%
-	Logo1 = % DirSource "GrepoUtil.ico"
+	Logo1 = % DirSource "GrepoUtils.ico"
 	Logo := RegExReplace(Logo1,"(\n|\r)")
 	msgbox %Logo%
-	;Shortcut1 = % DirSource "GrepoUtil.lnk"
+	;Shortcut1 = % DirSource "GrepoUtils.lnk"
 	;Shortcut := RegExReplace(Shortcut1,"(\n|\r)")
 	
 	VarAppData1 = % OutputVar "\Desktop"
-	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtil.lnk"
+	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtils.lnk"
 	msgbox %VarAppData%
 }
 
@@ -74,12 +74,12 @@ msgbox %Script%
 
 FileCopy, % Logo, C:\Program Files\GrepoUtils, 1		;Copies the icon across, overwrites
 FileCopy, % Script, C:\Program Files\GrepoUtils, 1		;Copies the main ahk across, overwrites
-FileCreateShortcut, C:\Program Files\GrepoUtils\GrepoUtil.ahk, % VarAppData , C:\Program Files\GrepoUtils, , , C:\Program Files\GrepoUtils\GrepoUtil.ico, , , 1		;Creates a desktop shortcut, overwrites
+FileCreateShortcut, C:\Program Files\GrepoUtils\GrepoUtils.ahk, % VarAppData , C:\Program Files\GrepoUtils, , , C:\Program Files\GrepoUtils\GrepoUtils.ico, , , 1		;Creates a desktop shortcut, overwrites
 
 Sleep 100
 
 MsgBox, 4,, Would you like to run the program now? (press Yes or No)
 IfMsgBox Yes
-    Run, C:\Program Files\GrepoUtils\GrepoUtil.ahk
+    Run, C:\Program Files\GrepoUtils\GrepoUtils.ahk
 
 MsgBox Done
