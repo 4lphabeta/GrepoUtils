@@ -47,7 +47,7 @@ CollectResources(qty, opt){
 	msgbox X%xpos%, Y%ypos%
 	Return
 
-^RIGHT::	;Ctrl+RArrow - Collect single
+^RIGHT::	;Ctrl+RArrow - Collect single, 10m
 	CollectResources(1, 1)
 	Return
 	
