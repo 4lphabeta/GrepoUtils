@@ -9,7 +9,7 @@ Menu, Tray, Add
 Menu, Tray, Add, Restart, Restart
 Menu, Tray, Add, Exit, QuitNow
 
-DirSource = C:\Program Files\Grepolis\Grepolis.ico
+DirSource = C:\Program Files\GrepoUtils\Grepolis.ico
 I_Icon = % DirSource
 ICON [I_Icon]
 Menu, Tray, Icon , %I_Icon%
@@ -89,9 +89,9 @@ CollectResources(qty, opt){
 
 ^Esc:: ExitApp
 
-FileRead, DefUser, C:\Program Files\Grepolis\UserDef.txt
+FileRead, DefUser, C:\Program Files\GrepoUtils\UserDef.txt
 Sleep 20
-FileRead, DefCallback, C:\Program Files\Grepolis\CallbackDef.txt
+FileRead, DefCallback, C:\Program Files\GrepoUtils\CallbackDef.txt
 DetectHiddenWindows, On
 SetTitleMatchMode, 2
 SetKeyDelay, 20, 10
