@@ -1,80 +1,30 @@
-if not (RegExMatch(DllCall("GetCommandLine", "str"), " /restart(?!\S)")) {		;Restarts the script with admin perms
+; ###### RESTART AS ADMIN ######
+if not (RegExMatch(DllCall("GetCommandLine", "str"), " /restart(?!\S)")) {		; Restarts the script with admin perms
 	Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%",, UseErrorLevel
 	ExitApp
 }
 
-splitString(string, delemiter){
-   arr := []
-   loop, parse, string, %delemiter%
-   {
-      arr[A_Index] := A_LoopField
-   }
-   return arr
-}
+; ############ MAIN ############
 
-DetectHiddenText, Off
-SetTitleMatchMode, 2
+path = %a_scriptdir%								; Path to where the file has been run
+path2 := RegExReplace(path, "(\n|\r)")				; A more solid path for specific use cases
 
-WinGetText, out, A
-word_array := splitString(out, " ")
-path = % word_array[5]
+DirSource = %path%\									; The current path with an added backslash
+Script = % DirSource "GrepoUtils.ahk"				; The current path plus script file name
+Logo = % DirSource "GrepoUtils.ico"					; The current path plus icon file name
 
-path2 := RegExReplace(path, "(\n|\r)")
+VarAppData :=  A_DESKTOP "\GrepoUtils.lnk"			; The path to the user's Desktop with the shortcut file name
 
-IfNotInString, path2, Downloads		;Checks if it is being ran from the Downloads folder
-{
-	;Is in Downloads
-	StringTrimRight, OutputVar, path, 7
-	var1 = % OutputVar
-	var2 = \GrepoUtils\
-	DirSource = %var1%%var2%
-	Script1 = % DirSource "GrepoUtils.ahk"
-	Script := RegExReplace(Script1,"(\n|\r)")
-	msgbox %Script%
-	Logo1 = % DirSource "GrepoUtils.ico"
-	Logo := RegExReplace(Logo1,"(\n|\r)")
-	msgbox %Logo%
-	;Shortcut1 = % DirSource "GrepoUtils.lnk"
-	;Shortcut := RegExReplace(Shortcut1,"(\n|\r)")
-
-	StringTrimRight, OutputVar, A_Temp, 19
-	VarAppData1 = % OutputVar "\Desktop"
-	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtils.lnk"
-	msgbox %VarAppData%
-}
-else
-{
-	;Is NOT in Downloads
-	StringTrimRight, OutputVar, A_Temp, 19
-	var1 = % OutputVar
-	var2 = \Downloads\GrepoUtils\
-	DirSource = %var1%%var2%
-	Script1 = % DirSource "GrepoUtils.ahk"
-	Script := RegExReplace(Script1,"(\n|\r)")
-	msgbox %Script%
-	Logo1 = % DirSource "GrepoUtils.ico"
-	Logo := RegExReplace(Logo1,"(\n|\r)")
-	msgbox %Logo%
-	;Shortcut1 = % DirSource "GrepoUtils.lnk"
-	;Shortcut := RegExReplace(Shortcut1,"(\n|\r)")
-	
-	VarAppData1 = % OutputVar "\Desktop"
-	VarAppData := RegExReplace(VarAppData1,"(\n|\r)") "\GrepoUtils.lnk"
-	msgbox %VarAppData%
-}
-
-if not (FileExist("C:\Program Files\GrepoUtils")) {
-	FileCreateDir, C:\Program Files\GrepoUtils
+if not (FileExist("C:\Program Files\GrepoUtils")) {	; If the C: drive location doesn't exist, make it
+	FileCreateDir, C:\Program Files\GrepoUtils		; Create the directory
 }
 
 Sleep 500
 
-msgbox %Logo%
-msgbox %Script%
-
-FileCopy, % Logo, C:\Program Files\GrepoUtils, 1		;Copies the icon across, overwrites
-FileCopy, % Script, C:\Program Files\GrepoUtils, 1		;Copies the main ahk across, overwrites
-FileCreateShortcut, C:\Program Files\GrepoUtils\GrepoUtils.ahk, % VarAppData , C:\Program Files\GrepoUtils, , , C:\Program Files\GrepoUtils\GrepoUtils.ico, , , 1		;Creates a desktop shortcut, overwrites
+FileCopy, % Logo, C:\Program Files\GrepoUtils, 1		; Copies the icon across, overwrites
+FileCopy, % Script, C:\Program Files\GrepoUtils, 1		; Copies the main ahk across, overwrites
+FileCreateShortcut, C:\Program Files\GrepoUtils\GrepoUtils.ahk, % VarAppData , C:\Program Files\GrepoUtils, , 
+, C:\Program Files\GrepoUtils\GrepoUtils.ico, , , 1		; Creates a desktop shortcut, overwrites
 
 Sleep 100
 
