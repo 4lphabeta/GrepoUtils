@@ -5,7 +5,7 @@ https://github.com/4lphabeta/GrepoUtils
 
 
 #### INSTALLATION ####
-1. Run AutoHotkey_###_setup.exe
+1. Run AutoHotkey_2.0.5_setup.exe
 2. Run GrepoUtilsInstaller.ahk
 The script will now be installed in C:\Program Files\GrepoUtils.
 
